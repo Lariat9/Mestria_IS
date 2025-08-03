@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  erp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    #restart: always
+    container_name: erp_program
+    depends_on:
+      - db-erp
+    # volumes:
+    #   - static:/app/static
+    ports:
+      - "80:80"
+    # develop:
+    #   watch:
+    #     - path: ./scsem/requerimientos.txt
+    #       action: rebuild
+    #     - path: ./scsem
+    #       target: /app
+    #       action: sync
+    # volumes: 
+      
+
+  db-erp:
+    image: mysql:8.1.0
+    #restart: always
+    container_name: erp_db
+    environment:
+      MYSQL_DATABASE: erp
+      MYSQL_USER: erpuser
+      MYSQL_PASSWORD: "Contraseña7654/(%&/"
+      MYSQL_ROOT_PASSWORD: admin1234
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  db:  
+  static:  
