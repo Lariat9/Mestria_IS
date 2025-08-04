@@ -111,7 +111,7 @@ class OrdenCompraActualizar(UpdateView,LoginRequiredMixin):
     
     def post(self, request, *args, **kwargs):
         orden_compra = self.get_object()
-        #Recuperar del post ?
+        #Recuperar del post ? (Establecer un id en el front para recuperar )
         detalles_orden_compra = Detalle_Orden_Compra.objects.filter(orden_compra = orden_compra)
         form_detalle_compra = request.POST.copy()
 

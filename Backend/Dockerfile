@@ -1,4 +1,4 @@
-FROM buildpack-deps:bullseye
+FROM yakworks/bullseye:docker-jdk11
 
 RUN apt-get update
 RUN apt-get install python3 python3-pip openssh-client -y 
