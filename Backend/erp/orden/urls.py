@@ -1,7 +1,7 @@
+from orden import views
 from django.urls import path
-from . import views
 
-app_name = 'orden_compra'
+app_name = 'orden'
 
 urlpatterns = [
     path('proveedores_lista', views.ProveedorLista.as_view(), name='proveedor_lista'),

@@ -35,7 +35,7 @@ class RutaForm(forms.ModelForm):
         Model= Ruta
         fields = '__all__'
         widgets={
-            'fecha_entrega': forms.DateField(attrs={'type': 'date'}),
+            'fecha_entrega': forms.DateField(),
             'coordenadas': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Poligono de la ruta'}) ,
             'pedido': forms.Select(attrs={'class':'select2'}),
             'conductor': forms.Select(attrs={'class':'select2'}),

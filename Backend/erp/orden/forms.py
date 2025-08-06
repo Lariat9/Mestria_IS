@@ -9,8 +9,8 @@ class ProveedorForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'nombre':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre del proveedor'}),
-            'email':forms.EmailField(attrs={'class':'form-control'}),
-            'rfc':forms.EmailField(attrs={'class':'form-control'})
+            'email':forms.TextInput(attrs={'class':'form-control', 'placeholder':'ejemplo@email.com'}),
+            'rfc':forms.TextInput(attrs={'class':'form-control'})
         }
 
         labels = {
@@ -39,8 +39,8 @@ class OrdenCompraform(forms.ModelForm):
         model = Orden_compra
         fields = '__all__'
         widgets = {
-            'fecha_orden': forms.DateField(attrs={'type': 'date'}),
-            'fecha_recepcion': forms.DateField(attrs={'type': 'date'}),
+            'fecha_orden': forms.DateField(),
+            'fecha_recepcion': forms.DateField(),
             'proveedor': forms.Select(attrs={'class':'select2'}),
         }
         labels = {
@@ -52,9 +52,9 @@ class OrdenCompraform(forms.ModelForm):
 class OrdenCompraActualizarform(forms.ModelForm):
     class Meta:
         model = Orden_compra
-        fields = 'fecha_recepcion, proveedor'
+        fields = ['fecha_recepcion', 'proveedor',]
         widgets = {
-            'fecha_recepcion': forms.DateField(attrs={'type': 'date'}),
+            'fecha_recepcion': forms.DateField(),
             'proveedor': forms.Select(attrs={'class':'select2'}),
         }
         labels = {
@@ -65,9 +65,9 @@ class OrdenCompraActualizarform(forms.ModelForm):
 class DetalleOrdenCompraForm(forms.ModelForm):
     class Meta:
         model: Detalle_Orden_Compra
-        fields = "cantidad,producto"
+        fields = ['cantidad', 'producto']
         widgets = {
-            'cantidad': forms.IntegerField(attrs={'class':'form-control', 'placeholder':'Cantidad por producto'}),
+            'cantidad': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Cantidad por producto'}),
             'producto': forms.Select(attrs={'class':'select2'}),
         }
         labels = {
@@ -81,7 +81,7 @@ class InventarioForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'ubicacion': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre del Producto'}),
-            'cantidad': forms.IntegerField(attrs={'class':'form-control', 'placeholder':'Cantidad por producto'}),
+            'cantidad': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Cantidad por producto'}),
             'productos': forms.Select(attrs={'class':'select2'}),
         }
 

@@ -8,8 +8,8 @@ class ClienteForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre del proveedor'}) ,
-            'email': forms.EmailField(attrs={'class':'form-control'}),
-            'telefono': forms.IntegerField(attrs={'class':'form-control'}),
+            'email': forms.TextInput(attrs={'class':'form-control', 'placeholder':'ejemplo@email.com'}),
+            'telefono': forms.NumberInput(attrs={'class':'form-control'}),
             'rfc': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre del proveedor'})
         }
         labels = {
@@ -23,7 +23,7 @@ class PedidoForm(forms.ModelForm):
         Model=Pedido
         fields = '__all__'
         widgets={
-            'fecha_pedido' : forms.DateField(attrs={'type': 'date'}),
+            'fecha_pedido' : forms.DateField(),
             'cliente': forms.Select(attrs={'class':'select2'}),
         }
         labels = {
@@ -34,9 +34,9 @@ class PedidoForm(forms.ModelForm):
 class DetallePedidoForm(forms.ModelForm):
     class Meta:
         Model=Pedido
-        fields = 'cantidad, producto'
+        fields = ['cantidad', 'producto']
         widgets={
-            'cantidad': forms.IntegerField(attrs={'class':'form-control'}),
+            'cantidad': forms.NumberInput(attrs={'class':'form-control'}),
             'producto': forms.Select(attrs={'class':'select2'})
         }
         labels = {

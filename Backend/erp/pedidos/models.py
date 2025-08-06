@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
-from orden_compra.models import Producto
+from orden.models import Producto
 
 class Cliente(models.Model):
     """
@@ -58,7 +58,7 @@ class DetallePedido(models.Model):
             - pedido(fk): Pedido del que forma parte
     """
     cantidad = models.IntegerField(verbose_name= "Cantidad solicictada por producto", blank=False, null=False)
-    producto =  models.ForeignKey("orden_compra.Producto", 
+    producto =  models.ForeignKey("orden.Producto", 
                                    verbose_name="Producto solicitado por un cliente",
                                    null = True, blank = True, 
                                     on_delete=models.DO_NOTHING)

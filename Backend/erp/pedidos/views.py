@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import * 
-from .forms import *
+from pedidos.forms import *
 
 class ClienteLista(ListView):
     model = Cliente
