@@ -8,7 +8,8 @@ services:
     #restart: always
     container_name: erp_program
     depends_on:
-      - db-erp
+      db-erp:
+        condition: service_healthy
     # volumes:
     #   - static:/app/static
     ports:
@@ -30,8 +31,14 @@ services:
     environment:
       MYSQL_DATABASE: erp
       MYSQL_USER: erpuser
-      MYSQL_PASSWORD: "Contraseña7654/(%&/"
+      MYSQL_PASSWORD: "Contrasena7654/(%&/"
       MYSQL_ROOT_PASSWORD: admin1234
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 20s
+      timeout: 20s
+      retries: 3
+      start_period: 5s
     volumes:
       - db:/var/lib/mysql
     ports:

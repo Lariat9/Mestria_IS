@@ -1,7 +1,8 @@
 FROM yakworks/bullseye:docker-jdk11
 
 RUN apt-get update
-RUN apt-get install python3 python3-pip openssh-client -y 
+RUN apt install pkg-config libmariadb-dev -y
+RUN apt-get install default-libmysqlclient-dev build-essential python3 python3-pip openssh-client python3-dev -y 
 
 # RUN apt-get install python3-cffi python3-brotli libpango-1.0-0 libpangoft2-1.0-0 -y
 
@@ -11,11 +12,12 @@ RUN ln -snf  /etc/l/usr/share/zoneinfo/$TZocaltime && echo $TZ > /etc/timezone
 
 # Application environment
 WORKDIR /app
-RUN pip3 install django
 
 COPY ./erp/ /app/
- 
-# RUN pip3 install -r /app/requerimientos.txt
+
+RUN python3 -m pip install --upgrade pip
+
+RUN pip3 install -r /app/requirements.txt
 
 # COPY ./hosts /etc/
 
